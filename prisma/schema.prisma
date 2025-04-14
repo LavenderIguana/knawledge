@@ -17,6 +17,7 @@ model Users {
   createdAt DateTime    @default(now())
   pages     Page[]
   notes     UserNotes[]
+  apiTokens ApiToken[]
 }
 
 model Page {
@@ -102,4 +103,16 @@ model Category {
   note_id  String   @id @default(uuid())
   category String
   markdown Markdown @relation(fields: [note_id], references: [markdown_id])
+}
+
+model ApiToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  name      String   // For users to identify different tokens
+  userId    String
+  user      Users    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  lastUsed  DateTime @updatedAt
+
+  @@index([token])
 }

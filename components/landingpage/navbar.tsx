@@ -5,12 +5,14 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useSession } from "next-auth/react"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { data: session } = useSession()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,9 +47,23 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center space-x-8">
             <NavLink href="#features">Features</NavLink>
             <NavLink href="#how-it-works">How It Works</NavLink>
-            <Link href="/auth/signin">
-              <Button className="bg-blue-700 hover:bg-blue-800 text-white">Get Started</Button>
-            </Link>
+            {session ? (
+              <>
+                <Link href="/summarize">
+                  <Button className="bg-blue-700 hover:bg-blue-800 text-white">Dashboard</Button>
+                </Link>
+                <Link href="/settings">
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <Settings className="h-4 w-4" />
+                    Settings
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Link href="/auth/signin">
+                <Button className="bg-blue-700 hover:bg-blue-800 text-white">Get Started</Button>
+              </Link>
+            )}
           </nav>
 
           <div className="md:hidden">
@@ -73,9 +89,23 @@ export default function Navbar() {
             <MobileNavLink href="#how-it-works" onClick={() => setIsOpen(false)}>
               How It Works
             </MobileNavLink>
-            <Link href="/auth/signin">
-              <Button className="bg-blue-700 hover:bg-blue-800 text-white w-full">Get Started</Button>
-            </Link>
+            {session ? (
+              <>
+                <Link href="/summarize">
+                  <Button className="bg-blue-700 hover:bg-blue-800 text-white w-full">Dashboard</Button>
+                </Link>
+                <Link href="/settings">
+                  <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+                    <Settings className="h-4 w-4" />
+                    Settings
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Link href="/auth/signin">
+                <Button className="bg-blue-700 hover:bg-blue-800 text-white w-full">Get Started</Button>
+              </Link>
+            )}
           </div>
         </motion.div>
       )}
@@ -85,7 +115,7 @@ export default function Navbar() {
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="text-blue-800 hover:text-blue-600 font-medium transition-colors">
+    <Link href={href} className="text-blue-900 hover:text-blue-700 transition-colors">
       {children}
     </Link>
   )
@@ -104,7 +134,7 @@ function MobileNavLink({
     <Link
       href={href}
       onClick={onClick}
-      className="text-blue-800 hover:text-blue-600 font-medium py-2 block transition-colors"
+      className="text-blue-900 hover:text-blue-700 transition-colors"
     >
       {children}
     </Link>

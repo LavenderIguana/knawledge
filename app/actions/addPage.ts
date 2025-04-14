@@ -5,12 +5,16 @@ import { createPageSnapshot } from './createPageSnapshot'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 
-export async function extractTitle(url: string): Promise<string> {
+export async function extractTitle(url: string, userId?: string): Promise<string> {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session) {
-      throw new Error('Unauthorized')
+    // If no userId provided, check for session
+    if (!userId) {
+      const session = await getServerSession(authOptions)
+      if (!session) {
+        throw new Error('Unauthorized')
+      }
     }
+    
     const response = await fetch(url)
     const html = await response.text()
     
@@ -24,26 +28,30 @@ export async function extractTitle(url: string): Promise<string> {
   }
 }
 
-export async function addPage(url: string) {
+export async function addPage(url: string, userId?: string) {
   if (!url) {
     throw new Error('URL is required')
   }
 
   try {
-    const session = await getServerSession(authOptions)
-    console.log('Session data with ID:', JSON.stringify(session, null, 2))
+    let authenticatedUserId = userId;
     
-    if (!session?.user?.id) {
-      throw new Error('Unauthorized')
+    // If no userId provided, check for session
+    if (!authenticatedUserId) {
+      const session = await getServerSession(authOptions)
+      if (!session?.user?.id) {
+        throw new Error('Unauthorized')
+      }
+      authenticatedUserId = session.user.id;
     }
 
-    const title = await extractTitle(url)
+    const title = await extractTitle(url, authenticatedUserId)
 
     const page = await prisma.page.create({
       data: {
         title: title,
         url: url,
-        userId: session.user.id,
+        userId: authenticatedUserId,
       },
     })
 
