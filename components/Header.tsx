@@ -19,8 +19,8 @@ export function Header() {
   const { data: session } = useSession()
 
   return (
-    <header className="border-b sticky top-0 z-50 bg-background/95 backdrop-blur">
-      <div className="flex h-16 items-center px-4">
+    <header className="h-16 border-b fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur">
+      <div className="flex h-full items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
             <span className="text-white font-bold text-lg">K</span>

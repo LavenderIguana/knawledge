@@ -27,9 +27,9 @@ export default function RootLayout({
       <body className={inter.variable}>
         <SessionProvider>
           <Providers>
-            <div className="flex min-h-screen flex-col">
+            <div className="flex flex-col h-screen">
               {!isHomePage && <Header />}
-              <main className={`flex-1 ${isHomePage ? '' : 'pt-16'}`}>
+              <main className={`flex-1 ${isHomePage ? '' : ''}`}>
                 {children}
               </main>
             </div>
