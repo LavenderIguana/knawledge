@@ -6,25 +6,6 @@ import Link from "next/link"
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-slate-900 text-white">
-      {/* Navbar */}
-      <header className="container mx-auto py-6 px-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Brain className="h-8 w-8 text-purple-500" />
-          <span className="text-2xl font-bold">Knowledge</span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-gray-300 hover:text-white transition">
-            Features
-          </a>
-          <a href="#how-it-works" className="text-gray-300 hover:text-white transition">
-            How It Works
-          </a>
-        </nav>
-        <Link href="/summarize">
-          <Button className="bg-purple-600 hover:bg-purple-700">Get Started</Button>
-        </Link>
-      </header>
-
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 md:py-32 flex flex-col items-center text-center relative">
         <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -165,55 +146,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Showcase Section
-      <section id="showcase" className="container mx-auto px-4 py-20">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-          See <span className="text-purple-500">Knowledge</span> in Action
-        </h2>
-
-        <div className="bg-slate-800/30 rounded-2xl p-6 md:p-10 border border-slate-700 max-w-5xl mx-auto">
-          <div className="aspect-video relative rounded-lg overflow-hidden mb-8">
-            <Image
-              src="/placeholder.svg?height=720&width=1280"
-              alt="Knowledge App Demo"
-              width={1280}
-              height={720}
-              className="object-cover"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-purple-600 rounded-full w-16 h-16 flex items-center justify-center cursor-pointer hover:bg-purple-700 transition">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
-              <h3 className="text-lg font-bold mb-2">Article Summarization</h3>
-              <p className="text-gray-300 text-sm">
-                Watch how Knowledge instantly summarizes complex articles into digestible insights.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
-              <h3 className="text-lg font-bold mb-2">AI Chat Interface</h3>
-              <p className="text-gray-300 text-sm">
-                See how you can ask questions about your content and get accurate answers.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
-              <h3 className="text-lg font-bold mb-2">Smart Note-Taking</h3>
-              <p className="text-gray-300 text-sm">
-                Experience our AI-powered editor that helps you organize and enhance your notes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 py-20">
