@@ -11,16 +11,9 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 })
-
-export const metadata: Metadata = {
-  title: 'Knowledge2',
-  description: 'Your Knowledge Base Reimagined',
-  metadataBase: new URL(process.env.NEXTAUTH_URL || 'https://knowledge2.vercel.app'),
-};
-
 export default function RootLayout({
   children,
-  
+
 }: {
   children: React.ReactNode
 }) {
