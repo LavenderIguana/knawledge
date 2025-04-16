@@ -102,7 +102,11 @@ export function ApiTokenManager() {
           placeholder="Token name (e.g., iOS Shortcut)"
           className="flex-1"
         />
-        <Button onClick={generateToken} disabled={isLoading}>
+        <Button 
+          onClick={generateToken} 
+          disabled={isLoading}
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+        >
           {isLoading ? (
             <>
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -127,6 +131,7 @@ export function ApiTokenManager() {
                   variant="ghost"
                   size="sm"
                   onClick={() => copyToken(token.token)}
+                  className="hover:text-purple-600"
                 >
                   {copiedToken === token.token ? (
                     <CheckCircle className="h-4 w-4 text-green-500" />

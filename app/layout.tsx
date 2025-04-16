@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import { Providers } from "./providers";
 import { SessionProvider } from "next-auth/react";
 import { Metadata } from 'next';
+import { Header } from '@/components/Header';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -22,7 +23,12 @@ export default function RootLayout({
       <body className={inter.variable}>
         <SessionProvider>
           <Providers>
-            {children}
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">
+                {children}
+              </main>
+            </div>
           </Providers>
         </SessionProvider>
       </body>
