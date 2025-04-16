@@ -24,11 +24,11 @@ export default function SummarizePage() {
   }, [session]);
   
   if (status === "loading" || status === "unauthenticated") {
-    return <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center">Loading...</div>;
+    return <div className="h-[calc(100vh-64px)] flex items-center justify-center bg-white dark:bg-gray-900">Loading...</div>;
   }
   
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
+    <main className="h-[calc(100vh-64px)] flex items-center justify-center bg-white dark:bg-gray-900">
       <LinkInput 
         pageId="" 
         onAddLink={handleAddLink}

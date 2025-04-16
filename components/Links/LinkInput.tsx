@@ -77,8 +77,8 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
   return (
     <>
-      <div className={`w-full h-screen flex flex-col px-4 overflow-hidden justify-center`}>
-        <div className="w-full max-w-xl mx-auto space-y-6">
+      <div className="w-full flex flex-col px-4 py-8 items-center justify-center">
+        <div className="w-full max-w-xl mx-auto space-y-4">
           <div className="text-center space-y-2">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -86,7 +86,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               transition={{ delay: 0.1 }}
               className="inline-flex items-center justify-center space-x-2"
             >
-              <div className="text-blue-500 text-xl">✧</div>
+              <div className="text-purple-500 text-xl">✧</div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Knowledge Analyzer</h2>
             </motion.div>
             <motion.p
@@ -101,7 +101,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
           <motion.div
             animate={{
-              boxShadow: isFocused ? "0 0 0 2px rgba(59, 130, 246, 0.5)" : "none",
+              boxShadow: isFocused ? "0 0 0 2px rgba(124, 58, 237, 0.5)" : "none",
             }}
             className="flex items-center w-full bg-gray-50 dark:bg-gray-800 rounded-lg"
           >
@@ -158,7 +158,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             <Button
               onClick={() => handleSubmit(url)}
               disabled={!url || !isValidUrl || isLoading}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
             >
               <span>{isLoading ? "Processing..." : "Analyze Content"}</span>
               {!isLoading && (
