@@ -87,8 +87,8 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
   return (
     <>
-      <div className="w-full flex flex-col px-4 py-8 items-center justify-center">
-        <div className="w-full max-w-xl mx-auto space-y-4">
+      <div className="w-full max-w-xl mx-auto px-4 py-8">
+        <div className="space-y-4">
           <div className="text-center space-y-2">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}

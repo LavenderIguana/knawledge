@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FileText, Settings, Home, Menu } from 'lucide-react'
+import { FileText, Settings, Home, Menu, Library } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
@@ -21,16 +21,16 @@ export function MainNav() {
   // Navigation items
   const routes = [
     {
-      href: '/',
-      label: 'Home',
-      icon: Home,
-      active: pathname === '/',
-    },
-    {
       href: '/summarize',
       label: 'Summarize',
       icon: FileText,
       active: pathname === '/summarize' || pathname.startsWith('/summarize/'),
+    },
+    {
+      href: '/summaries',
+      label: 'Summaries',
+      icon: Library,
+      active: pathname === '/summaries' || pathname.startsWith('/summaries/'),
     },
     {
       href: '/settings',
