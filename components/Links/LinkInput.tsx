@@ -9,6 +9,7 @@ import { addPage } from "@/app/actions/addPage"
 import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Link, ArrowRight } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 interface LinkInputProps {
   pageId: string
@@ -21,8 +22,10 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
   const [isValidUrl, setIsValidUrl] = useState(true)
   const [isFocused, setIsFocused] = useState(false)
   const [newPageId, setNewPageId] = useState<string | null>(null)
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const { data: session, status } = useSession()
 
   useEffect(() => {
     if (!url) {
@@ -39,6 +42,13 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
   const handleSubmit = async (url: string) => {
     if (!url || !isValidUrl) return;
+
+    // Check if user is signed in
+    if (!session) {
+      setShowAuthPrompt(true)
+      setTimeout(() => setShowAuthPrompt(false), 3000)
+      return;
+    }
 
     try {
       setIsLoading(true)
@@ -95,7 +105,10 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               transition={{ delay: 0.2 }}
               className="text-muted-foreground"
             >
-              Enter a URL to summarize any article or webpage
+              {session 
+                ? "Enter a URL to summarize any article or webpage"
+                : "Sign in to summarize articles and webpages"
+              }
             </motion.p>
           </div>
 
@@ -154,13 +167,33 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             )}
           </AnimatePresence>
 
+          <AnimatePresence>
+            {showAuthPrompt && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-orange-400 text-sm text-center"
+              >
+                Please sign in to analyze content
+              </motion.p>
+            )}
+          </AnimatePresence>
+
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
             <Button
               onClick={() => handleSubmit(url)}
               disabled={!url || !isValidUrl || isLoading}
               className="w-full font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
             >
-              <span>{isLoading ? "Processing..." : "Analyze Content"}</span>
+              <span>
+                {isLoading 
+                  ? "Processing..." 
+                  : session 
+                    ? "Analyze Content" 
+                    : "Sign in to Analyze"
+                }
+              </span>
               {!isLoading && (
                 <motion.div
                   animate={{ x: url && isValidUrl ? [0, 4, 0] : 0 }}
@@ -181,7 +214,10 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
           >
             <p className="text-sm text-muted-foreground flex items-center justify-center">
               <Link className="h-4 w-4 mr-2" />
-              Instant AI-powered summaries of any content
+              {session 
+                ? "Instant AI-powered summaries of any content"
+                : "Sign in to get instant AI-powered summaries"
+              }
             </p>
           </motion.div>
         </div>
