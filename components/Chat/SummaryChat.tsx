@@ -188,16 +188,16 @@ export function SummaryChat({ pageId }: SummaryChatProps) {
         {messages.map(message => (
           <div 
             key={message.id} 
-            className={`p-4 rounded-lg ${
+            className={`p-4 rounded-lg border border-white ${
               message.role === 'user' 
-                ? 'bg-muted text-foreground ml-auto max-w-[80%]' 
-                : 'bg-muted text-foreground mr-auto max-w-[80%]'
+                ? 'bg-black text-white ml-auto max-w-[80%]' 
+                : 'bg-black text-white mr-auto max-w-[80%]'
             }`}
           >
-            <div className="font-semibold mb-1 text-foreground">
+            <div className="font-semibold mb-1 text-white">
               {message.role === 'user' ? 'You' : 'Knowledge Assistant'}
             </div>
-            <div className="text-foreground text-lg">
+            <div className="text-white text-lg">
               {message.role === 'assistant' && message.content.includes('# ') 
                 ? renderSummaryContent({
                     title: message.content.split('\n')[0].replace('# ', ''),
