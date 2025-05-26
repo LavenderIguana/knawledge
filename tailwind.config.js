@@ -9,8 +9,15 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
+  			sans: [
+  				'var(--font-jiced-mono)',
+  				'monospace'
+  			],
   			default: [
-  				'var(--font-inter)'
+  				'var(--font-jiced-mono)'
+  			],
+  			mono: [
+  				'var(--font-jiced-mono)'
   			]
   		},
   		borderRadius: {

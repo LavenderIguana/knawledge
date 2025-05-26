@@ -105,7 +105,7 @@ export function ApiTokenManager() {
         <Button 
           onClick={generateToken} 
           disabled={isLoading}
-          className="bg-purple-600 hover:bg-purple-700 text-white"
+          className="bg-black hover:bg-gray-800 text-white"
         >
           {isLoading ? (
             <>
@@ -131,7 +131,7 @@ export function ApiTokenManager() {
                   variant="ghost"
                   size="sm"
                   onClick={() => copyToken(token.token)}
-                  className="hover:text-purple-600"
+                  className="hover:text-black"
                 >
                   {copiedToken === token.token ? (
                     <CheckCircle className="h-4 w-4 text-green-500" />
@@ -143,7 +143,7 @@ export function ApiTokenManager() {
                   variant="ghost"
                   size="sm"
                   onClick={() => deleteToken(token.id)}
-                  className="text-red-500 hover:text-red-600"
+                  className="text-gray-600 hover:text-black"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>

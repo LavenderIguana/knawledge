@@ -86,7 +86,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               transition={{ delay: 0.1 }}
               className="inline-flex items-center justify-center space-x-2"
             >
-              <div className="text-purple-500 text-xl">✧</div>
+              <div className="text-black text-xl">✧</div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Knowledge Analyzer</h2>
             </motion.div>
             <motion.p
@@ -158,7 +158,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             <Button
               onClick={() => handleSubmit(url)}
               disabled={!url || !isValidUrl || isLoading}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
+              className="w-full bg-black hover:bg-gray-800 text-white font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
             >
               <span>{isLoading ? "Processing..." : "Analyze Content"}</span>
               {!isLoading && (
