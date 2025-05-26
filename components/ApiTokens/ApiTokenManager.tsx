@@ -105,7 +105,6 @@ export function ApiTokenManager() {
         <Button 
           onClick={generateToken} 
           disabled={isLoading}
-          className="bg-black hover:bg-gray-800 text-white"
         >
           {isLoading ? (
             <>
@@ -122,7 +121,7 @@ export function ApiTokenManager() {
         {tokens.map((token) => (
           <div
             key={token.id}
-            className="p-4 border rounded-lg bg-white dark:bg-gray-800"
+            className="p-4 border rounded-lg bg-card text-card-foreground"
           >
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-medium">{token.name}</h3>
@@ -147,12 +146,13 @@ export function ApiTokenManager() {
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
+                
               </div>
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-sm text-muted-foreground">
               Created: {new Date(token.createdAt).toLocaleDateString()}
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-sm text-muted-foreground">
               Last used: {new Date(token.lastUsed).toLocaleDateString()}
             </div>
           </div>

@@ -19,11 +19,11 @@ export function Header() {
   const { data: session } = useSession()
 
   return (
-    <header className="h-16 border-b fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur">
+    <header className="h-16 border-b fixed top-0 left-0 right-0 z-50 bg-background border-border">
       <div className="flex h-full items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center">
-            <span className="text-white font-bold text-lg">K</span>
+          <div className="w-8 h-8 rounded-full bg-white border border-white flex items-center justify-center">
+            <span className="text-black font-bold text-lg">K</span>
           </div>
           <span className="font-bold text-lg hidden md:inline-block">KnowledgeAI</span>
         </Link>
@@ -66,7 +66,7 @@ export function Header() {
             </DropdownMenu>
           ) : (
             <Link href="/auth/signin">
-              <Button className="bg-black hover:bg-gray-800 text-white">Sign In</Button>
+              <Button>Sign In</Button>
             </Link>
           )}
         </div>

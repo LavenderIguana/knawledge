@@ -86,14 +86,14 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               transition={{ delay: 0.1 }}
               className="inline-flex items-center justify-center space-x-2"
             >
-              <div className="text-black text-xl">✧</div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Knowledge Analyzer</h2>
+              <div className="text-white text-xl">✧</div>
+              <h2 className="text-xl font-semibold text-foreground">Knowledge Analyzer</h2>
             </motion.div>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-gray-500 dark:text-gray-400"
+              className="text-muted-foreground"
             >
               Enter a URL to summarize any article or webpage
             </motion.p>
@@ -101,12 +101,12 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
           <motion.div
             animate={{
-              boxShadow: isFocused ? "0 0 0 2px rgba(124, 58, 237, 0.5)" : "none",
+              boxShadow: isFocused ? "0 0 0 2px rgba(255, 255, 255, 0.5)" : "none",
             }}
-            className="flex items-center w-full bg-gray-50 dark:bg-gray-800 rounded-lg"
+            className="flex items-center w-full bg-muted rounded-lg"
           >
             <div className="flex items-center justify-center pl-4">
-              <Search className="h-5 w-5 text-gray-400" />
+              <Search className="h-5 w-5 text-muted-foreground" />
             </div>
 
             <Input
@@ -118,7 +118,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               onBlur={() => setIsFocused(false)}
               onKeyDown={handleKeyDown}
               placeholder="https://example.com/article"
-              className="flex-1 border-0 bg-transparent px-4 py-3 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-0"
+              className="flex-1 border-0 bg-transparent px-4 py-3 text-foreground focus:outline-none focus:ring-0"
               disabled={isLoading}
             />
 
@@ -147,7 +147,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-red-500 text-sm text-center"
+                className="text-destructive text-sm text-center"
               >
                 Please enter a valid URL (e.g., https://example.com)
               </motion.p>
@@ -158,7 +158,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             <Button
               onClick={() => handleSubmit(url)}
               disabled={!url || !isValidUrl || isLoading}
-              className="w-full bg-black hover:bg-gray-800 text-white font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
+              className="w-full font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
             >
               <span>{isLoading ? "Processing..." : "Analyze Content"}</span>
               {!isLoading && (
@@ -179,7 +179,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             transition={{ delay: 0.4 }}
             className="text-center"
           >
-            <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center">
+            <p className="text-sm text-muted-foreground flex items-center justify-center">
               <Link className="h-4 w-4 mr-2" />
               Instant AI-powered summaries of any content
             </p>

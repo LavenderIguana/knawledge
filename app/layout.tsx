@@ -30,7 +30,7 @@ export default function RootLayout({
           <Providers>
             <div className="flex flex-col h-screen">
               {!isHomePage && <Header />}
-              <main className={`flex-1 ${isHomePage ? '' : ''}`}>
+              <main className={`flex-1 ${isHomePage ? '' : 'pt-16'}`}>
                 {children}
               </main>
             </div>
