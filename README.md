@@ -1,6 +1,6 @@
 # AI Knowledge Summary Analyzer
 
-https://knowledge2-git-main-seif-mamdouhs-projects.vercel.app/
+knowledge2.vercel.app
 
 ## Demo
 
