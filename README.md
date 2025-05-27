@@ -19,7 +19,6 @@ This project is an AI-powered tool designed to analyze and summarize knowledge c
 - Quick summarization shortcuts:
   - Anonymous access via URL parameters
   - Authenticated API endpoint for integrations
-  - Browser extension support
 
 ## Technology Stack
 - Frontend: React.js with modern UI components
