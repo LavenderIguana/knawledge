@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { getUserSummaries } from '@/app/actions/getUserSummaries';
@@ -31,26 +31,27 @@ export default function SummariesPage() {
     }
   }, [status, router]);
 
-  useEffect(() => {
-    const fetchSummaries = async () => {
-      if (status === "authenticated") {
-        try {
-          const result = await getUserSummaries();
-          if (result.success) {
-            setSummaries(result.summaries as Summary[]);
-          } else {
-            setError(result.error || 'Failed to load summaries');
-          }
-        } catch (err) {
-          setError('Failed to load summaries');
-        } finally {
-          setLoading(false);
+  const fetchSummaries = useCallback(async () => {
+    if (status === "authenticated") {
+      try {
+        setLoading(true);
+        const result = await getUserSummaries();
+        if (result.success) {
+          setSummaries(result.summaries);
+        } else {
+          setError(result.error || 'Failed to load summaries');
         }
+      } catch (err) {
+        setError('Failed to load summaries');
+      } finally {
+        setLoading(false);
       }
-    };
-
-    fetchSummaries();
+    }
   }, [status]);
+
+  useEffect(() => {
+    fetchSummaries();
+  }, [fetchSummaries]);
 
   const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) return text;

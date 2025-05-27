@@ -47,7 +47,7 @@ export async function getUserSummaries() {
       pageId: note.summary.markdown.pageSnapshot?.page?.id || '',
       createdAt: note.createdAt,
       updatedAt: note.updatedAt,
-      hasNotes: note.content && note.content !== '<div><p>No content has been added to this note yet.</p></div>'
+      hasNotes: Boolean(note.content && note.content !== '<div><p>No content has been added to this note yet.</p></div>')
     }));
 
     return { 

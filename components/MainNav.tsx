@@ -28,7 +28,7 @@ export function MainNav() {
     },
     {
       href: '/summaries',
-      label: 'Summaries',
+      label: 'Libary',
       icon: Library,
       active: pathname === '/summaries' || pathname.startsWith('/summaries/'),
     },
