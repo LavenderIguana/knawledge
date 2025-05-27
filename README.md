@@ -1,6 +1,6 @@
 # AI Knowledge Summary Analyzer
 
-knowledge2.vercel.app
+https://knowledge2.vercel.app
 
 ## Demo
 
