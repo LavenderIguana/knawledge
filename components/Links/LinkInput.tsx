@@ -160,7 +160,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-destructive text-sm text-center"
+                className="text-destructive text-sm text-center text-red-500"
               >
                 Please enter a valid URL (e.g., https://example.com)
               </motion.p>
