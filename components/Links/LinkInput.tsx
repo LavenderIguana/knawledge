@@ -9,6 +9,7 @@ import { addPage } from "@/app/actions/addPage"
 import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Link, ArrowRight } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 interface LinkInputProps {
   pageId: string
@@ -21,8 +22,10 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
   const [isValidUrl, setIsValidUrl] = useState(true)
   const [isFocused, setIsFocused] = useState(false)
   const [newPageId, setNewPageId] = useState<string | null>(null)
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const { data: session, status } = useSession()
 
   useEffect(() => {
     if (!url) {
@@ -39,6 +42,13 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
   const handleSubmit = async (url: string) => {
     if (!url || !isValidUrl) return;
+
+    // Check if user is signed in
+    if (!session) {
+      setShowAuthPrompt(true)
+      setTimeout(() => setShowAuthPrompt(false), 3000)
+      return;
+    }
 
     try {
       setIsLoading(true)
@@ -77,8 +87,8 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
 
   return (
     <>
-      <div className="w-full flex flex-col px-4 py-8 items-center justify-center">
-        <div className="w-full max-w-xl mx-auto space-y-4">
+      <div className="w-full max-w-xl mx-auto px-4 py-8">
+        <div className="space-y-4">
           <div className="text-center space-y-2">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -86,27 +96,30 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               transition={{ delay: 0.1 }}
               className="inline-flex items-center justify-center space-x-2"
             >
-              <div className="text-purple-500 text-xl">✧</div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Knowledge Analyzer</h2>
+              <div className="text-white text-xl">✧</div>
+              <h2 className="text-xl font-semibold text-foreground">Knowledge Analyzer</h2>
             </motion.div>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-gray-500 dark:text-gray-400"
+              className="text-muted-foreground"
             >
-              Enter a URL to summarize any article or webpage
+              {session 
+                ? "Enter a URL to summarize any article or webpage"
+                : "Sign in to summarize articles and webpages"
+              }
             </motion.p>
           </div>
 
           <motion.div
             animate={{
-              boxShadow: isFocused ? "0 0 0 2px rgba(124, 58, 237, 0.5)" : "none",
+              boxShadow: isFocused ? "0 0 0 2px rgba(255, 255, 255, 0.5)" : "none",
             }}
-            className="flex items-center w-full bg-gray-50 dark:bg-gray-800 rounded-lg"
+            className="flex items-center w-full bg-muted rounded-lg"
           >
             <div className="flex items-center justify-center pl-4">
-              <Search className="h-5 w-5 text-gray-400" />
+              <Search className="h-5 w-5 text-muted-foreground" />
             </div>
 
             <Input
@@ -118,7 +131,7 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
               onBlur={() => setIsFocused(false)}
               onKeyDown={handleKeyDown}
               placeholder="https://example.com/article"
-              className="flex-1 border-0 bg-transparent px-4 py-3 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-0"
+              className="flex-1 border-0 bg-transparent px-4 py-3 text-foreground focus:outline-none focus:ring-0"
               disabled={isLoading}
             />
 
@@ -147,9 +160,22 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-red-500 text-sm text-center"
+                className="text-destructive text-sm text-center text-red-500"
               >
                 Please enter a valid URL (e.g., https://example.com)
+              </motion.p>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {showAuthPrompt && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-orange-400 text-sm text-center"
+              >
+                Please sign in to analyze content
               </motion.p>
             )}
           </AnimatePresence>
@@ -158,9 +184,16 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             <Button
               onClick={() => handleSubmit(url)}
               disabled={!url || !isValidUrl || isLoading}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
+              className="w-full font-medium py-3 transition-all duration-200 flex items-center justify-center group rounded-lg"
             >
-              <span>{isLoading ? "Processing..." : "Analyze Content"}</span>
+              <span>
+                {isLoading 
+                  ? "Processing..." 
+                  : session 
+                    ? "Analyze Content" 
+                    : "Sign in to Analyze"
+                }
+              </span>
               {!isLoading && (
                 <motion.div
                   animate={{ x: url && isValidUrl ? [0, 4, 0] : 0 }}
@@ -179,9 +212,12 @@ export function LinkInput({ pageId, onAddLink }: LinkInputProps) {
             transition={{ delay: 0.4 }}
             className="text-center"
           >
-            <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center">
+            <p className="text-sm text-muted-foreground flex items-center justify-center">
               <Link className="h-4 w-4 mr-2" />
-              Instant AI-powered summaries of any content
+              {session 
+                ? "Instant AI-powered summaries of any content"
+                : "Sign in to get instant AI-powered summaries"
+              }
             </p>
           </motion.div>
         </div>

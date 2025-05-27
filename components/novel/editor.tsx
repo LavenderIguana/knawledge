@@ -72,7 +72,7 @@ export default function Editor({ initialValue, onChange, editable = true, showTi
           immediatelyRender={false}
           initialContent={editorContent}
           extensions={extensions}
-          className='min-h-[500px] overflow-y-auto mb-4 p-4 border rounded-lg bg-white dark:bg-gray-800'
+          className='min-h-[500px] overflow-y-auto mb-4 p-4 border rounded-lg bg-background text-foreground'
           
           editorProps={{
             handleDOMEvents: {

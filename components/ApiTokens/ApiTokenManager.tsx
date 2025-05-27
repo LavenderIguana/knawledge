@@ -105,7 +105,6 @@ export function ApiTokenManager() {
         <Button 
           onClick={generateToken} 
           disabled={isLoading}
-          className="bg-purple-600 hover:bg-purple-700 text-white"
         >
           {isLoading ? (
             <>
@@ -122,7 +121,7 @@ export function ApiTokenManager() {
         {tokens.map((token) => (
           <div
             key={token.id}
-            className="p-4 border rounded-lg bg-white dark:bg-gray-800"
+            className="p-4 border rounded-lg bg-card text-card-foreground"
           >
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-medium">{token.name}</h3>
@@ -131,7 +130,7 @@ export function ApiTokenManager() {
                   variant="ghost"
                   size="sm"
                   onClick={() => copyToken(token.token)}
-                  className="hover:text-purple-600"
+                  className="hover:text-black"
                 >
                   {copiedToken === token.token ? (
                     <CheckCircle className="h-4 w-4 text-green-500" />
@@ -143,16 +142,17 @@ export function ApiTokenManager() {
                   variant="ghost"
                   size="sm"
                   onClick={() => deleteToken(token.id)}
-                  className="text-red-500 hover:text-red-600"
+                  className="text-gray-600 hover:text-black"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
+                
               </div>
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-sm text-muted-foreground">
               Created: {new Date(token.createdAt).toLocaleDateString()}
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-sm text-muted-foreground">
               Last used: {new Date(token.lastUsed).toLocaleDateString()}
             </div>
           </div>

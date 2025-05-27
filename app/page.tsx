@@ -1,10 +1,8 @@
 "use client"
-import LandingPage from '@/components/landingpage/LandingPage'
+import { LinkInput } from '@/components/Links/LinkInput'
 
 export default function Home() {
   return (
-    <main>
-      <LandingPage />
-    </main>
+    <LinkInput pageId="" onAddLink={() => {}} />
   )
 }

@@ -19,11 +19,11 @@ export function Header() {
   const { data: session } = useSession()
 
   return (
-    <header className="h-16 border-b fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur">
+    <header className="h-16 border-b fixed top-0 left-0 right-0 z-50 bg-background border-border">
       <div className="flex h-full items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">K</span>
+          <div className="w-8 h-8 rounded-full bg-white border border-white flex items-center justify-center">
+            <span className="text-black font-bold text-lg">K</span>
           </div>
           <span className="font-bold text-lg hidden md:inline-block">KnowledgeAI</span>
         </Link>
@@ -37,7 +37,7 @@ export function Header() {
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={session.user?.image || ''} alt={session.user?.name || 'User'} />
-                    <AvatarFallback className="bg-purple-100 text-purple-700">
+                    <AvatarFallback className="bg-muted text-foreground">
                       {session.user?.name?.[0]?.toUpperCase() || <User className="h-4 w-4" />}
                     </AvatarFallback>
                   </Avatar>
@@ -56,7 +56,7 @@ export function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  className="text-red-600 cursor-pointer"
+                  className="text-foreground cursor-pointer"
                   onClick={() => signOut()}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
@@ -66,7 +66,7 @@ export function Header() {
             </DropdownMenu>
           ) : (
             <Link href="/auth/signin">
-              <Button className="bg-purple-600 hover:bg-purple-700">Sign In</Button>
+              <Button>Sign In</Button>
             </Link>
           )}
         </div>

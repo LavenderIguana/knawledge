@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FileText, Settings, Home, Menu } from 'lucide-react'
+import { FileText, Settings, Home, Menu, Library } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
@@ -21,16 +21,16 @@ export function MainNav() {
   // Navigation items
   const routes = [
     {
-      href: '/',
-      label: 'Home',
-      icon: Home,
-      active: pathname === '/',
-    },
-    {
       href: '/summarize',
       label: 'Summarize',
       icon: FileText,
       active: pathname === '/summarize' || pathname.startsWith('/summarize/'),
+    },
+    {
+      href: '/summaries',
+      label: 'Libary',
+      icon: Library,
+      active: pathname === '/summaries' || pathname.startsWith('/summaries/'),
     },
     {
       href: '/settings',
@@ -53,9 +53,9 @@ export function MainNav() {
             key={route.href}
             href={route.href}
             className={cn(
-              "text-sm font-medium transition-colors hover:text-purple-500 flex items-center space-x-1",
+              "text-sm font-medium transition-colors hover:text-foreground flex items-center space-x-1",
               route.active
-                ? "text-purple-700 dark:text-purple-400"
+                ? "text-foreground font-bold"
                 : "text-muted-foreground"
             )}
           >
@@ -82,9 +82,9 @@ export function MainNav() {
                   href={route.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-purple-500 flex items-center space-x-2 p-2 rounded-md",
+                    "text-sm font-medium transition-colors hover:text-foreground flex items-center space-x-2 p-2 rounded-md",
                     route.active
-                      ? "text-purple-700 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20"
+                      ? "text-foreground font-bold bg-muted"
                       : "text-muted-foreground"
                   )}
                 >

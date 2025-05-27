@@ -2,6 +2,9 @@
 
 https://knowledge2-git-main-seif-mamdouhs-projects.vercel.app/
 
+## Demo
+
+![Knowledge Analyzer Demo](knowledge.gif)
 
 ## Overview
 This project is an AI-powered tool designed to analyze and summarize knowledge content from various sources. It uses natural language processing techniques to extract key information, generate concise summaries, and provide insights about content.

@@ -26,12 +26,12 @@ export default function SummarizePage({ params }: SummarizePageProps) {
   };
 
   return (
-    <main className="min-h-screen w-full bg-white dark:bg-gray-900 flex flex-col items-center justify-center p-4">
+    <main className="min-h-screen w-full bg-background text-foreground flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-7xl">
         <div className="flex justify-end mb-4">
           <button
             onClick={handleShare}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-100 text-black border border-white rounded-md transition-colors"
           >
             {copied ? (
               <>
