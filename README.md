@@ -20,11 +20,26 @@ This project is an AI-powered tool designed to analyze and summarize knowledge c
   - Anonymous access via URL parameters
   - Authenticated API endpoint for integrations
 
-## Technology Stack
-- Frontend: React.js with modern UI components
-- Backend: NLP libraries && Prisma DB
-- AI Models: Transformer-based language models for text analysis
-- API: RESTful endpoints with token-based authentication
+## 🔑 API Setup for Shortcuts
+
+To enable quick summarization shortcuts and integrations, you can set up API access as follows:
+
+1. **Go to App Settings:**
+   - Navigate to the app settings page in your account dashboard.
+2. **Create an API Key:**
+   - In the settings, find the section for API Keys and generate a new key.
+3. **Use the API Key:**
+   - When using the shortcut or integration, paste your API key in the field labeled `API Token`.
+   - This token will authenticate your requests to the API endpoint.
+
+**Example Usage:**
+
+```
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://knowledge2.vercel.app/api/shortcut?content=YOUR_CONTENT
+```
+
+Replace `YOUR_API_KEY` with the key you generated, and `YOUR_CONTENT` with the text or URL you want to summarize.
 
 ## 📜 License
 This project is distributed under the [MIT License](https://opensource.org/license/mit).
