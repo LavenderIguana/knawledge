@@ -22,6 +22,8 @@ This project is an AI-powered tool designed to analyze and summarize knowledge c
 
 ## 🔑 API Setup for Shortcuts
 
+![API Setup Demo](apiSetup.gif)
+
 To enable quick summarization shortcuts and integrations, you can set up API access as follows:
 
 1. **Go to App Settings:**
