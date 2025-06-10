@@ -8,6 +8,9 @@
 
 ![Knowledge Analyzer Demo](knowledge.gif)
 
+## Shorcut Demo
+![Knowledge Shorcut Demo](knowledgeShortcutDemo.gif)
+
 ## Overview
 This project is an AI-powered tool designed to analyze and summarize knowledge content from various sources. It uses natural language processing techniques to extract key information, generate concise summaries, and provide insights about content.
 
