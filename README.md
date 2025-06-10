@@ -1,10 +1,15 @@
 # AI Knowledge Summary Analyzer
 
-https://knowledge2.vercel.app
+[Knowledge.com](https://knowledge2.vercel.app)
+
+[Knowledge Shortcut](https://www.icloud.com/shortcuts/dc01b15d3ed640a39ead4909e370c384)
 
 ## Demo
 
 ![Knowledge Analyzer Demo](knowledge.gif)
+
+## Shorcut Demo
+![Knowledge Shorcut Demo](knowledgeShortcutDemo.gif)
 
 ## Overview
 This project is an AI-powered tool designed to analyze and summarize knowledge content from various sources. It uses natural language processing techniques to extract key information, generate concise summaries, and provide insights about content.
@@ -20,11 +25,28 @@ This project is an AI-powered tool designed to analyze and summarize knowledge c
   - Anonymous access via URL parameters
   - Authenticated API endpoint for integrations
 
-## Technology Stack
-- Frontend: React.js with modern UI components
-- Backend: NLP libraries && Prisma DB
-- AI Models: Transformer-based language models for text analysis
-- API: RESTful endpoints with token-based authentication
+## 🔑 API Setup for Shortcuts
+
+![API Setup Demo](apiSetup.gif)
+
+To enable quick summarization shortcuts and integrations, you can set up API access as follows:
+
+1. **Go to App Settings:**
+   - Navigate to the app settings page in your account dashboard.
+2. **Create an API Key:**
+   - In the settings, find the section for API Keys and generate a new key.
+3. **Use the API Key:**
+   - When using the shortcut or integration, paste your API key in the field labeled `API Token`.
+   - This token will authenticate your requests to the API endpoint.
+
+**Example Usage:**
+
+```
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://knowledge2.vercel.app/api/shortcut?content=YOUR_CONTENT
+```
+
+Replace `YOUR_API_KEY` with the key you generated, and `YOUR_CONTENT` with the text or URL you want to summarize.
 
 ## 📜 License
 This project is distributed under the [MIT License](https://opensource.org/license/mit).
