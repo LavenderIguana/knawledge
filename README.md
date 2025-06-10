@@ -1,10 +1,12 @@
 # AI Knowledge Summary Analyzer
 
-https://knowledge2.vercel.app
+![](https://knowledge2.vercel.app)
 
 ## Demo
 
 ![Knowledge Analyzer Demo](knowledge.gif)
+
+![Knowledge Shortcut](https://www.icloud.com/shortcuts/dc01b15d3ed640a39ead4909e370c384)
 
 ## Overview
 This project is an AI-powered tool designed to analyze and summarize knowledge content from various sources. It uses natural language processing techniques to extract key information, generate concise summaries, and provide insights about content.
